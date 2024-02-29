@@ -30,6 +30,6 @@ public static class FileHelpers
             }
             return null;
         }
-        return new FileStream(path, FileMode.Open);
+        return File.OpenRead(path);
     }
 }

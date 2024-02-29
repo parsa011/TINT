@@ -2,6 +2,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\common\Tint.Helpers\Tint.Helpers.csproj" />
+      <ProjectReference Include="..\Tint.Defs\Tint.Defs.csproj" />
     </ItemGroup>
 
     <PropertyGroup>
