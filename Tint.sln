@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ui", "ui", "{C43AA0FA-9BAD-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tint.Console", "ui\Tint.Console\Tint.Console.csproj", "{FEC003AD-0CA6-4CBA-9E8B-703EC837904E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{7C836D15-5D5E-4574-B738-412BB6FD58B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tint.Helpers", "common\Tint.Helpers\Tint.Helpers.csproj", "{B7ECFA07-AC9D-43B8-AFFB-EF928F433DCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,9 +32,14 @@ Global
 		{FEC003AD-0CA6-4CBA-9E8B-703EC837904E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEC003AD-0CA6-4CBA-9E8B-703EC837904E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEC003AD-0CA6-4CBA-9E8B-703EC837904E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7ECFA07-AC9D-43B8-AFFB-EF928F433DCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7ECFA07-AC9D-43B8-AFFB-EF928F433DCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7ECFA07-AC9D-43B8-AFFB-EF928F433DCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7ECFA07-AC9D-43B8-AFFB-EF928F433DCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{27C6637A-DCF3-4700-8FFC-C83A4A38AC80} = {5C307C0E-7F33-4573-9F4D-87B4D059DE36}
 		{FEC003AD-0CA6-4CBA-9E8B-703EC837904E} = {C43AA0FA-9BAD-446D-A8D1-2030BA188737}
+		{B7ECFA07-AC9D-43B8-AFFB-EF928F433DCA} = {7C836D15-5D5E-4574-B738-412BB6FD58B5}
 	EndGlobalSection
 EndGlobal

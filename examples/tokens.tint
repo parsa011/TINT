@@ -1,0 +1,24 @@
+string main(string name, int age)
+{
+    return "parsa" + "mahmoudy";
+}
+
+int test = 21;
+int another_test = 12;
+
+if (test == another_test)
+{
+    output.write("Equals");
+}
+
+switch (test)
+{
+    21 :
+        output.write(21.89);
+        break;
+    default :
+        output.write("Oops");
+        break;
+}
+
+exit();
