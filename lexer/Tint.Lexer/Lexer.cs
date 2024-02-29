@@ -2,15 +2,10 @@ using Tint.Helpers;
 
 namespace Tint.Lexer;
 
-public class Lexer
+public class Lexer(string filePath)
 {
     #region Ctor
-    private readonly FileStream _fileStream;
-    public readonly string FilePath;
-    public Lexer(string filePath)
-    {
-        _fileStream = FileHelpers.OpenFile(filePath, true);
-        FilePath = filePath;
-    }
+    private readonly FileStream _fileStream = FileHelpers.OpenFile(filePath, true);
+    public readonly string FilePath = filePath;
     #endregion
 }
