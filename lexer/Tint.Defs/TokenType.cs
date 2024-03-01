@@ -2,5 +2,6 @@ namespace Tint.Defs;
 
 public enum TokenType
 {
-    String
+    String,
+    Keyword
 }
