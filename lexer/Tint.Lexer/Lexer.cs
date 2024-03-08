@@ -69,12 +69,24 @@ public class Lexer
     /// <returns></returns>
     public Token Next()
     {
-        var func = _functionTable[CurrentChar];
-        Console.WriteLine(func().Type);
-        return new Token(TokenType.String, 1);
+        return ReadToken(CurrentChar);
     }
 
-    public Token KeyWordToken()
+    private Token ReadToken(char c)
+    {
+        if (!_functionTable.Any(a => a.Key == c))
+        {
+            return BadToken();
+        }
+        return _functionTable[c].Invoke();
+    }
+
+    private Token BadToken()
+    {
+        return new Token(TokenType.BadToken, 1);
+    }
+
+    private Token KeyWordToken()
     {
         return new Token(TokenType.Keyword, 1);
     }
