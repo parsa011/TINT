@@ -4,5 +4,7 @@ public enum TokenType
 {
     String,
     Keyword,
-    BadToken
+    BadToken,
+	Dot,
+    EndOfFile
 }

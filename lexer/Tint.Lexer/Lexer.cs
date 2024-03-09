@@ -8,20 +8,57 @@ public class Lexer
     #region Ctor
     private readonly FileStream _fileStream;
     public readonly string FilePath;
-    private readonly Dictionary<char, Func<Token>> _functionTable;
+    private readonly Dictionary<string, Func<Token>> _functionTable;
     public Lexer(string filePath)
     {
         FilePath = filePath;
         _fileStream = FileHelpers.OpenFile(filePath, true);
         _functionTable = [];
-        for (char c = 'a'; c <= 'z'; c++)
-        {
-            _functionTable.Add(c, KeyWordToken);
-        }
+		// there should be a little note :
+		//   if this we shold lex token like '=' and '==' in one method
+		//   in separate way (method) it's hard to detect, but in this way
+		//   we just need to see next character, if it was not token, push back
+		//   that character
         for (char c = 'A'; c <= 'Z'; c++)
         {
-            _functionTable.Add(c, KeyWordToken);
-        }
+            _functionTable.Add(c.ToString(), KeyWordToken);
+			_functionTable.Add((c + ('a' - 'A')).ToString(), KeyWordToken);
+		}
+		for (char c = '0'; c <= '9'; c++)
+		{
+			_functionTable.Add(c.ToString(), KeyWordToken);
+		}
+		_functionTable.Add(".", DotToken);
+		_functionTable.Add("+", DotToken);
+		_functionTable.Add("-", DotToken);
+		_functionTable.Add("/", DotToken);
+		_functionTable.Add("%", DotToken);
+		_functionTable.Add("*", DotToken);
+		_functionTable.Add("\"", DotToken);
+		_functionTable.Add("'", DotToken);
+		_functionTable.Add("&", DotToken);
+		_functionTable.Add("&&", DotToken);
+		_functionTable.Add("|", DotToken);
+		_functionTable.Add("||", DotToken);
+		_functionTable.Add("^", DotToken);
+		_functionTable.Add("=", DotToken);
+		_functionTable.Add("==", DotToken);
+		_functionTable.Add("+=", DotToken);
+		_functionTable.Add("-=", DotToken);
+		_functionTable.Add("*=", DotToken);
+		_functionTable.Add("/=", DotToken);
+		_functionTable.Add("%=", DotToken);
+		_functionTable.Add("<", DotToken);
+		_functionTable.Add("<=", DotToken);
+		_functionTable.Add(">", DotToken);
+		_functionTable.Add(">=", DotToken);
+		_functionTable.Add("!", DotToken);
+		_functionTable.Add("(", DotToken);
+		_functionTable.Add(")", DotToken);
+		_functionTable.Add("[", DotToken);
+		_functionTable.Add("]", DotToken);
+		_functionTable.Add("{", DotToken);
+		_functionTable.Add("}", DotToken);
     }
     #endregion
 
@@ -64,15 +101,16 @@ public class Lexer
     }
 
     /// <summary>
-    ///     what about to have a function dictionary, so we can get them by 'CurrentChar'
+	/// 	return Token from stream, by detecting the character and calling proper function to generate new token
+	/// 	idk if this comment is usefull or no, but i'm doing my best to explain
     /// </summary>
     /// <returns></returns>
     public Token Next()
     {
-        return ReadToken(CurrentChar);
+        return ReadToken(CurrentChar.ToString());
     }
 
-    private Token ReadToken(char c)
+    private Token ReadToken(string c)
     {
         if (!_functionTable.Any(a => a.Key == c))
         {
@@ -90,4 +128,9 @@ public class Lexer
     {
         return new Token(TokenType.Keyword, 1);
     }
+
+	private Token DotToken()
+	{
+		return new Token(TokenType.Dot, 1);
+	}
 }

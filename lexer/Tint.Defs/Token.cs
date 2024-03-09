@@ -1,7 +1,10 @@
 namespace Tint.Defs;
 
-public record Token(TokenType tokenType, int lineNumber)
+public record Token(TokenType TokenType, int LineNumber)
 {
-    public readonly TokenType Type = tokenType;
-    public readonly int LineNumber = lineNumber;
+	public void WriteToken()
+	{
+		// TODO
+		Console.WriteLine("Writing Token...");
+	}
 }
