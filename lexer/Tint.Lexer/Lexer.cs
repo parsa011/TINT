@@ -19,15 +19,18 @@ public class Lexer
 		//   in separate way (method) it's hard to detect, but in this way
 		//   we just need to see next character, if it was not token, push back
 		//   that character
+		//   for example here, we can detect if given work is token or and identifier in same function
         for (char c = 'A'; c <= 'Z'; c++)
         {
             _functionTable.Add(c.ToString(), KeyWordToken);
-			_functionTable.Add((c + ('a' - 'A')).ToString(), KeyWordToken);
+			_functionTable.Add(char.ToLower(c).ToString(), KeyWordToken);
 		}
 		for (char c = '0'; c <= '9'; c++)
 		{
 			_functionTable.Add(c.ToString(), KeyWordToken);
 		}
+		// this should be identifier in fact
+		_functionTable.Add("_", KeyWordToken);
 		_functionTable.Add(".", DotToken);
 		_functionTable.Add("+", DotToken);
 		_functionTable.Add("-", DotToken);
@@ -59,6 +62,10 @@ public class Lexer
 		_functionTable.Add("]", DotToken);
 		_functionTable.Add("{", DotToken);
 		_functionTable.Add("}", DotToken);
+		_functionTable.Add(";", DotToken);
+		_functionTable.Add(":", DotToken);
+		_functionTable.Add(",", DotToken);
+		_functionTable.Add("\0", EndOfFileToken);
     }
     #endregion
 
@@ -116,7 +123,7 @@ public class Lexer
         {
             return BadToken();
         }
-        return _functionTable[c].Invoke();
+        return _functionTable[c]();
     }
 
     private Token BadToken()
@@ -132,5 +139,10 @@ public class Lexer
 	private Token DotToken()
 	{
 		return new Token(TokenType.Dot, 1);
+	}
+
+	private Token EndOfFileToken()
+	{
+		return new Token(TokenType.EndOfFile, 1);
 	}
 }

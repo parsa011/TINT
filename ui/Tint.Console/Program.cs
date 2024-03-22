@@ -11,7 +11,7 @@ AnsiConsole.Status()
         Token t;
         do {
             t = lexer.Next();
-            t.WriteToken();
+            Console.WriteLine(t.TokenType);
         } while (t.TokenType != TokenType.EndOfFile);
         Console.WriteLine(lexer.Next().TokenType);
         AnsiConsole.MarkupLine(
