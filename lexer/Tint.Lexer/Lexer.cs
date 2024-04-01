@@ -87,7 +87,7 @@ public class Lexer
             }
             // skip white spaces
             do {
-                currentChar = (char)_fileStream.ReadByte();
+                currentChar = (char) _fileStream.ReadByte();
             } while (char.IsWhiteSpace(currentChar));
             return currentChar;
         }
@@ -114,7 +114,7 @@ public class Lexer
     /// <returns></returns>
     public Token Next()
     {
-        return ReadToken(CurrentChar.ToString());
+        return ReadToken(NextChar.ToString());
     }
 
     private Token ReadToken(string c)
